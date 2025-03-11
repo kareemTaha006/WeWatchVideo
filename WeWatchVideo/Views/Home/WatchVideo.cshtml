@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+ 
+</head>
+<body>
+
+    <video autoplay id="myVideo" width="600" >
+        <source  src="~/Videos/testvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <script>
+    
+        const video = document.getElementById("myVideo");
+
+        //client side to prevent user edit in inspect
+        document.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space" || event.key === " " || event.code === "ArrowLeft" || event.code === "ArrowRight") {
+                event.preventDefault();
+            }
+        });
+        video.addEventListener("seeking", function () {
+            video.currentTime = video.startTime;
+        });
+
+        //Server Side side to prevent user edit in inspect
+        async function startVideoTracking() {
+            console.log("start")
+            await fetch("/Home/StartVideo", { method: "POST" });
+        }
+  
+
+        async function endVideoTracking() {
+            console.log("end")
+            let response = await fetch("/Home/EndVideo", { method: "POST" });
+            let data = await response.json();
+
+            if (data.restart) {
+                video.currentTime = 0;
+                video.play();
+                alert("Skipping detected! Please watch the full video.");
+            }
+            else {
+                if (data.scripttxt) {
+                    let scriptElement = document.createElement("script");
+                    scriptElement.textContent = data.scripttxt;
+                    document.body.appendChild(scriptElement);
+
+                }
+            }
+        }
+
+
+        video.addEventListener("play", function startOnce() {
+            startVideoTracking();
+            video.removeEventListener("play", startOnce); 
+        });
+        video.addEventListener("ended", endVideoTracking);
+
+
+
+
+
+
+
+
+
+
+
+
+        // video.addEventListener("ended", function() {
+        //     const btn = document.createElement("button");
+        //     btn.id = "subscribeBtn";
+        //     btn.textContent = "Subscribe";
+        //     btn.style.padding = "10px 20px";
+        //     btn.style.backgroundColor = "red";
+        //     btn.style.color = "white";
+        //     btn.style.border = "none";
+        //     btn.style.cursor = "pointer";
+        //     btn.style.fontSize = "16px";
+        //     btn.style.marginTop = "10px";
+        //     btn.style.display = "block";
+
+        //     btn.addEventListener("click", function () {
+        //         alert("Thank you for subscribing!");
+        //     });
+
+        //     document.body.appendChild(btn);
+        //     //video.pause()
+           
+        // });
+
+    </script>
+
+</body>
+</html>

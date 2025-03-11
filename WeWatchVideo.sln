@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeWatchVideo", "WeWatchVideo\WeWatchVideo.csproj", "{AB7C2A92-5C09-486E-86EB-321A8F10D9FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB7C2A92-5C09-486E-86EB-321A8F10D9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7C2A92-5C09-486E-86EB-321A8F10D9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7C2A92-5C09-486E-86EB-321A8F10D9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7C2A92-5C09-486E-86EB-321A8F10D9FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D60CA75-C43B-4953-B040-77709DAC9AF0}
+	EndGlobalSection
+EndGlobal
